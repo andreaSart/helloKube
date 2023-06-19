@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hellodocker
+spec:
+
+# 3. Which pods are managed by this deployment?
+  selector:
+    matchLabels:
+      app: hellodocker
+  # 1. How many copies of each pod do we want?    
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hellodocker
+    spec:
+      containers:
+        - name: hellodocker
+          image: andreasart/hellodocker:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
